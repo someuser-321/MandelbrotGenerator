@@ -5,7 +5,9 @@ var button_hide,
 	button_reset;
 
 var label_iterations,
-	label_perf;
+	label_howto,
+	label_perf,
+	label_source;
 	
 var div_inputs,
 	div_area;
@@ -58,8 +60,14 @@ function setup()
 	button_reset.position(10, 100);
 	button_reset.mousePressed(reset);
 	
+	label_howto = createSpan('Zoom in by clicking and dragging a rectangle');
+	label_howto.position(10, 130);
+	
+	label_source = createA('https://github.com/someuser-321/MandelbrotGenerator', 'Check it out on GitHub!');
+	label_source.position(10, 150);
+	
 	label_perf = createSpan('Generated in #ms');
-	label_perf.position(10, 130);
+	label_perf.position(10, 170);
 	
 	div_inputs = createDiv('');
 	div_area = createDiv('');
@@ -102,7 +110,7 @@ function mouseDragged()
 		div_area.style('height', ''+(mouseYi - mouseY));
 	}
 
-	if ( mouseX > 330 || mouseY > 150 )
+	if ( mouseX > 330 || mouseY > 190 )
 		return false;
 }
 
@@ -111,19 +119,19 @@ function mouseMoved()
 	mouseX_ = mouseX;
 	mouseY_ = mouseY;
 	
-	if ( mouseX > 330 || mouseY > 150 )
+	if ( mouseX > 330 || mouseY > 190 )
 		return false;
 }
 
 function mouseClicked()
 {
-	if ( mouseX > 330 || mouseY > 150 )
+	if ( mouseX > 330 || mouseY > 190 )
 		return false;
 }
 
 function mousePressed()
 {
-	if ( mouseX > 330 || mouseY > 150 )
+	if ( mouseX > 330 || mouseY > 190 )
 	{
 		mouseXi = mouseX;
 		mouseYi = mouseY;
@@ -142,7 +150,7 @@ function mouseReleased()
 	div_area.style('height', '0');
 	div_area.style('visibility', 'hidden');
 	
-	if ( mouseX < 330 && mouseY < 150 ){	
+	if ( mouseX < 330 && mouseY < 190 ){	
 		if ( hide )
 			showUI();
 		hide = !hide;
@@ -191,6 +199,8 @@ function showUI()
 	button_reset.style('visibility', 'initial');
 
 	label_iterations.style('visibility', 'initial');
+	label_howto.style('visibility', 'initial');
+	label_source.style('visibility', 'initial');
 	label_perf.style('visibility', 'initial');
 	
 	div_inputs.style('visibility', 'initial');
@@ -205,6 +215,8 @@ function hideUI()
 	button_reset.style('visibility', 'hidden');
 	
 	label_iterations.style('visibility', 'hidden');
+	label_howto.style('visibility', 'hidden');
+	label_source.style('visibility', 'hidden');
 	label_perf.style('visibility', 'hidden');
 	
 	div_inputs.style('visibility', 'hidden');
